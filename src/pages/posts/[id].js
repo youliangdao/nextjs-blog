@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   // Add the "await" keyword like this:
-  const postData = getPostData(params.id);
+  const postData = await getPostData(params.id);
   // By returning { props: { postData } }, the Blog component
   // will receive `postData` as a prop at build time
   return {
@@ -31,6 +31,8 @@ export default function Post({ postData }) {
       {postData.id}
       <br />
       {postData.date}
+      <br />
+      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </Layout>
   );
 }
