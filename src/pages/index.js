@@ -14,7 +14,7 @@ export default function Home({ allPostsData }) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>
-          6月からエンジニア/React・Next.jsに興味があります/RUNTEQ34期卒/📚FE・LPIC1・CLF
+          6月からエンジニア/React・Next.js・TypeScript・AWSに興味があります/RUNTEQ34期卒/📚FE・LPIC1・CLF
         </p>
         <p>
           (This is a sample website - you’ll be building a site like this on{" "}
