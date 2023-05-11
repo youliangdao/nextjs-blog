@@ -4,18 +4,32 @@ import { getPostData } from "../../../lib/posts";
 import Head from "next/head";
 import { Date } from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
+import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { Post } from "../../types/post";
 
-export async function getStaticPaths() {
+type Props = {
+  postData: Post;
+};
+
+export const getStaticPaths: GetStaticPaths<Pick<Post, "id">> = async () => {
   const paths = getAllPostIds();
   // Return a list of possible value for id
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export async function getStaticProps({ params }) {
-  // Add the "await" keyword like this:
+export const getStaticProps: GetStaticProps<
+  { postData: Post },
+  { id: string }
+> = async ({ params }) => {
+  if (!params) {
+    return {
+      notFound: true,
+    };
+  }
+
   const postData = await getPostData(params.id);
   // By returning { props: { postData } }, the Blog component
   // will receive `postData` as a prop at build time
@@ -24,9 +38,9 @@ export async function getStaticProps({ params }) {
       postData,
     },
   };
-}
+};
 
-export default function Post({ postData }) {
+const Post: NextPage<Props> = ({ postData }) => {
   return (
     <Layout>
       <Head>
@@ -41,4 +55,6 @@ export default function Post({ postData }) {
       </article>
     </Layout>
   );
-}
+};
+
+export default Post;
