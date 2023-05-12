@@ -4,7 +4,7 @@ import utilStyles from "../styles/utils.module.css";
 // Add this import at the top of the file
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
-import { Date } from "../components/date";
+import Date from "../components/date";
 import { GetStaticProps, NextPage } from "next";
 import { Post } from "../types/post";
 
