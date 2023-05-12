@@ -4,9 +4,15 @@ import utilStyles from "../styles/utils.module.css";
 // Add this import at the top of the file
 import { getSortedPostsData } from "../../lib/posts";
 import Link from "next/link";
-import { Date } from "../components/date";
+import Date from "../components/date";
+import { GetStaticProps, NextPage } from "next";
+import { Post } from "../types/post";
 
-export default function Home({ allPostsData }) {
+type Props = {
+  allPostsData: Omit<Post, "contentHtml">[];
+};
+
+const Home: NextPage<Props> = ({ allPostsData }) => {
   return (
     <Layout home>
       <Head>
@@ -39,14 +45,15 @@ export default function Home({ allPostsData }) {
       </section>
     </Layout>
   );
-}
+};
 
-export async function getStaticProps() {
-  // Add the "await" keyword like this:
+export const getStaticProps: GetStaticProps<Props> = async () => {
   const allPostsData = getSortedPostsData();
   return {
     props: {
       allPostsData,
     },
   };
-}
+};
+
+export default Home;
