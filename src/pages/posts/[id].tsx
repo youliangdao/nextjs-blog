@@ -2,7 +2,7 @@ import Layout from "../../components/layout";
 import { getAllPostIds } from "../../../lib/posts";
 import { getPostData } from "../../../lib/posts";
 import Head from "next/head";
-import { Date } from "../../components/date";
+import Date from "../../components/date";
 import utilStyles from "../../styles/utils.module.css";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { Post } from "../../types/post";
